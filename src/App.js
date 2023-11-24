@@ -1,12 +1,10 @@
-import {  Typography } from '@mui/material';
 import './App.css';
+import CandidateFormUi from './Components/Pages/CandidateFormUi';
 
 function App() {
   return (
     <>
-    <Typography>
-      hello programmers!!!
-    </Typography>
+    <CandidateFormUi/>
     </>
     
   
