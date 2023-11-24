@@ -4,10 +4,11 @@ import CandidateFormUi from './Components/Pages/CandidateFormUi';
 function App() {
   return (
     <>
-    <CandidateFormUi/>
+    <Typography>
+      chutiya
+    </Typography>
+    <CandidateFormU/>
     </>
-    
-  
   );
 }
 
