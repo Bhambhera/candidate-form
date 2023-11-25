@@ -1,10 +1,10 @@
 import './App.css';
-import CandidateFormUi from './Components/Pages/CandidateFormUi';
+import CandidateFormControler from './Components/Pages/CandidateFormControler';
 
 function App() {
   return (
     <>
-    <CandidateFormUi/>
+    <CandidateFormControler/>
     </>
   );
 }
