@@ -6,28 +6,30 @@ import { useParams } from 'react-router-dom'
 function CandidateFormControler() {
   const params = useParams()
     const defaultFormData = {
-        err : "",
-        first_name : "",
-        middle_name : "",
-        last_name : "",
-        position : "",
-        date : params.time? moment(parseInt(params.time)): moment()
+        err : '',
+        first_name : '',
+        middle_name : '',
+        last_name : '',
+        position : '',
+        date : ""   
     }
     const [formData, setFormData] = useState(defaultFormData)
     const [loading,setLoading] = useState(false)
     const [validationErr,setValidationErr] = useState(null)
     const setDate = (newDate) => {
-      const parsedDate = moment.parse(newDate)
+      const parsedDate = moment(newDate)
+      const formattedDate = parsedDate.format("DD MM YYYY")
       setFormData({
         ...formData,
-        date : parsedDate
+        date : formattedDate
       })
     }
     const submit = () => { 
-      (validationErr == "") ? (alert('data successfull ')) : (alert('please enetr details'))
+      (validationErr == null) ? (alert('data successfull ')) : (alert('please enetr details'))
 
     }
     console.log(formData)
+    console.log(formData.date)
     console.log(validationErr)
   return (
     <>

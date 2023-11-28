@@ -11,7 +11,10 @@ const CustomInput = ({  setValidationErr, type, label, validate, ...props   }) =
         if (validationString !== true) {
           setErr(validationString)
           setValidationErr(validationString)
-        } else setErr(null)
+        } else { 
+          setErr(null)
+          setValidationErr(null)
+        }
       }
     }
     const onInput = () => {

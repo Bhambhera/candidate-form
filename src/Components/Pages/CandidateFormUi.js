@@ -3,9 +3,8 @@ import React from 'react'
 import CustomInput from '../Inputs/CustomInput'
 import SubmitButton from '../Buttons/SubmitButton'
 import CustomDatePicker from '../Layouts/Common/CustomDatePicker'
-import { setDate } from 'date-fns'
 
-function CandidateFormUi({formData , setFormData, loading, submit, setValidationErr}) {
+function CandidateFormUi({formData , setFormData, loading, submit, setValidationErr, setDate}) {
   return (
     <Stack spacing={2} sx={{ mb: 2 }}>
        <Typography variant="h4" align='center'>
@@ -23,7 +22,7 @@ function CandidateFormUi({formData , setFormData, loading, submit, setValidation
                     value={formData.first_name}
                     label="First Name*"
                     validate={() => {
-                      return (formData.name && formData.name != "") ? true : "First Name is required."
+                      return (formData.first_name && formData.first_name != "") ? true : "First Name is required."
                     }}
                     onChange = { (e) => {
                         setFormData ({
