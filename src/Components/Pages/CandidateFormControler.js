@@ -10,22 +10,31 @@ function CandidateFormControler() {
         first_name : '',
         middle_name : '',
         last_name : '',
-        position : '',
-        date : ""   
+        department : '',
+        date : ""   ,
+        experience :"",
+        relevant_experience: '',
+        qualification : '',
+        location : '',
+        Position : '',
+        notice_period : "",
+        expectations : '',
+        reference_from : '',
+
     }
     const [formData, setFormData] = useState(defaultFormData)
     const [loading,setLoading] = useState(false)
     const [validationErr,setValidationErr] = useState(null)
     const setDate = (newDate) => {
       const parsedDate = moment(newDate)
-      const formattedDate = parsedDate.format("DD MM YYYY")
+      const formattedDate = parsedDate.format("DD MMM,YYYY")
       setFormData({
         ...formData,
         date : formattedDate
       })
     }
     const submit = () => { 
-      (validationErr == null) ? (alert('data successfull ')) : (alert('please enetr details'))
+      (validationErr == null) ? (alert('data successfull ')) : (alert('please enter details'))
 
     }
     console.log(formData)
