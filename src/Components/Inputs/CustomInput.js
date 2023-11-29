@@ -2,7 +2,7 @@ import { Visibility, VisibilityOff } from "@mui/icons-material"
 import { IconButton, InputAdornment, TextField } from "@mui/material"
 import { useState } from "react"
 
-const CustomInput = ({  setValidationErr, type, label, validate, ...props   }) => {
+const CustomInput = ({ setValidationErr, type, label, validate, ...props   }) => {
     const [inputType, setType] = useState(type ? type : 'text')
     const [err, setErr] = useState(null)
     const onBlur = (e) => {

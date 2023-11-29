@@ -7,15 +7,22 @@ import { ThemeProvider } from '@emotion/react';
 import theme from  './assets/css/theme'
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import {AdapterMoment} from '@mui/x-date-pickers/AdapterMoment'
+import { Provider } from 'react-redux';
+import { applyMiddleware, createStore } from 'redux';
+import rootReducer from './Store/Reducers/RootReducer';
+import thunk from 'redux-thunk';
 
+const store = createStore(rootReducer, applyMiddleware(thunk))
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <LocalizationProvider dateAdapter={AdapterMoment}>
-        <App />
-      </LocalizationProvider>
-    </ThemeProvider>
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        <LocalizationProvider dateAdapter={AdapterMoment}>
+          <App />
+        </LocalizationProvider>
+      </ThemeProvider>
+    </Provider>
   </React.StrictMode>
 );
 
