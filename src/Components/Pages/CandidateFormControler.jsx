@@ -5,14 +5,18 @@ import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { handlingChange, sendingDetails } from '../../Store/Actions/CandidateActions'
 import axios from 'axios'
+import { openModal } from '../../Store/Actions/ModalActions'
+import CandidateDetails from './CandidateDetails'
+import { Modal } from '@mui/material'
 
 function CandidateFormControler() {
+  const dispatch = useDispatch()
   const defaultFormData = {
     err : '',
     first_name : '',
     middle_name : '',
     last_name : '',
-    date : '27 nov 2023',   
+    date : '',   
     position : '',
     department : '',
     total_experience : '',
@@ -26,8 +30,8 @@ function CandidateFormControler() {
   }
   const [formData, setFormData] = useState(defaultFormData)
   const [validationErr, setValidationErr] = useState(null)
-  const setDate = (newDate) => {
-    const parsedDate = moment(newDate)
+  const setDate = (date) => {
+    const parsedDate = moment(date)
     const formattedDate = parsedDate.format("DD MMM,YYYY")
     setFormData({
       ...formData,
@@ -36,6 +40,7 @@ function CandidateFormControler() {
   }
   const handleError = () => {
     console.log('Please enter details')
+    alert('Please enter details')
     setFormData(prevState => ({
       ...prevState,
       disabled : false 
@@ -44,6 +49,11 @@ function CandidateFormControler() {
   const handleApiResponse = (res) => {
     console.log('api provided response')
     console.log(res)
+    dispatch(openModal({
+      title : "Candidate Details",
+      component : <CandidateDetails></CandidateDetails>,
+      size : "md"
+    }))
     setFormData(prevState => ({
       ...prevState,
       disabled : false 
@@ -61,7 +71,7 @@ function CandidateFormControler() {
     console.log('sending details')
     const rootURL = 'https://localhost:8000/api/'
             axios({
-                url:`${rootURL}/candidate-form/`, 
+                url:`https://jsonplaceholder.typicode.com/todos/`, 
                 method:"post",
                 headers:{
                   "Content-Type":"application/json"
@@ -84,6 +94,7 @@ function CandidateFormControler() {
       ...prevState,
       disabled : true 
     }))
+    //formData.first_name || formData.middle_name || formData.last_name || formData.date || formData.position || formData.department || formData.total_experience || formData.relevant_experience || formData.qualification || formData.reference || formData.location || formData.notice_period || formData.expectation == '' ? handleError() : sendDetails() 
      validationErr == null ? sendDetails() : handleError()
   }
     console.log(validationErr)

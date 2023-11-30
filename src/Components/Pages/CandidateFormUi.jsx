@@ -194,13 +194,7 @@ function CandidateFormUi({ formData, setFormData, submit, setValidationErr, setD
               name="dob"
               inputFormat="DD MMM,YYYY"
               value={moment(formData.date)}
-              onChange={(e) =>
-                setFormData({
-                  ...formData,
-                  err: "",
-                  date: e.toISOString(),
-                })
-              }
+              onChange={setDate}
               type="date"
               label={"Date Of Birth*"}
               renderInput={(params) => (
