@@ -99,8 +99,7 @@ import { useDispatch } from 'react-redux';
       setValidationErr(errors);
       
       if (Object.keys(errors).length > 0) {
-        // Get the first field with an error
-        const firstErrorField = Object.keys(errors)[0];
+        const firstErrorField     = Object.keys(errors)[0];
      
         setSnackbarMessage(`${firstErrorField} is required.`);
         setSnackbarOpen(true);
@@ -132,8 +131,8 @@ import { useDispatch } from 'react-redux';
           snackbarOpen={snackbarOpen}
           snackbarMessage={snackbarMessage}
           handleSnackbarClose={handleSnackbarClose}
-          selectedDepartment={selectedDepartment} // Pass selectedDepartment
-        setSelectedDepartment={setSelectedDepartment} // Pass setter function
+          selectedDepartment={selectedDepartment} 
+        setSelectedDepartment={setSelectedDepartment}
         />
       </>
     );

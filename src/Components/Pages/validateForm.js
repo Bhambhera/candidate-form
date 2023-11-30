@@ -14,17 +14,19 @@ export const validateForm = (formData) => {
     if (!formData.last_name || formData.last_name === "") {
       errors.last_name = "Last Name is required.";
     }
-  
+    if (!formData.date || formData.date === "") {
+      errors.date = "Date of Birth is required.";
+    }
     if (!formData.qualification || formData.qualification === "") {
       errors.qualification = "Qualification is required.";
-    }
-  
-    if (!formData.department || formData.department === "") {
-      errors.department = "department is required.";
     }
     if (!formData.position || formData.position === "") {
       errors.position = "Position is required.";
     }
+    if (!formData.department || formData.department === "") {
+      errors.department = "department is required.";
+    }
+   
   
     if (!formData.experience || formData.experience === "") {
         errors.experience = "Experience is required.";
@@ -38,16 +40,9 @@ export const validateForm = (formData) => {
       errors.expectation = "Expectations is required.";
     }
   
-    if (!formData.date || formData.date === "") {
-      errors.date = "Date of Birth is required.";
-    }
-    if (!formData.qualification || formData.qualification === "") {
-      errors.qualification = "qualification is required.";
-    }
-  
-    if (!formData.department || formData.department === "") {
-      errors.department = "Department is required.";
-    }
+    
+ 
+    
     if (!formData.notice_period || formData.notice_period  === "") {
       errors.notice_period  = "notice period  is required.";
     }

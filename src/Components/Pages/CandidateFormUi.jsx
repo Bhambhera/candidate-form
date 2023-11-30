@@ -110,7 +110,24 @@ function CandidateFormUi({
         setValidationErr={setValidationErr} />
           </Grid>
         
-     
+          <Grid xs={12} md={4} item>
+            <MobileDatePicker sx={{ minWidth: 336 }}
+              disabled={loading}
+              id="dob"
+              name="dob"
+              inputFormat="DD MMM,YYYY"
+              value={moment(formData.date)}
+              onChange={setDate}
+              type="date"
+              label={"Date Of Birth*"}
+              renderInput={(params) => (
+                <CustomInput
+                  {...params}
+                  sx={{ width: '100%' }}
+                />
+              )}
+            />
+          </Grid>
         <Grid xs={12} md={4} item>
           <CustomInput
           type=  "text"
@@ -142,96 +159,6 @@ function CandidateFormUi({
         setValidationErr={setValidationErr} />
           </Grid>
           <Grid xs={12} md={4} item>
-          <CustomInput
-          type=  "text"
-        disabled={loading}
-        value={formData.relevant_experience}
-        label='Relevant Experience'
-        // validate={() => {
-        //   return formData.relevant_experience ? true : `Last Name is required.`;
-        // }}
-        onChange={(e) => {
-          setFormData({
-            ...formData,
-            relevant_experience : e.target.value,
-          });
-        }}
-        setValidationErr={setValidationErr} />
-          </Grid>
-         
-          
-          
-        <Grid xs={12} md={4} item>
-        <CustomInput
-          type=  "text"
-        disabled={loading}
-        value={formData.location}
-        label='Location'
-        
-                    iconEnd={<LocationSearchingIcon />}  
-              
-           
-        
-        onChange={(e) => {
-          setFormData({
-            ...formData,
-            location : e.target.value,
-          });
-        }}
-        setValidationErr={setValidationErr} />
-        </Grid>
-        <Grid xs={12} md={4} item>
-          <CustomInput
-          type=  "text"
-        disabled={loading}
-        value={formData.reference_from}
-        label='Reference Form'
-        // validate={() => {
-        //   return formData.relevant_experience ? true : `Last Name is required.`;
-        // }}
-        onChange={(e) => {
-          setFormData({
-            ...formData,
-            reference_from : e.target.value,
-          });
-        }}
-        setValidationErr={setValidationErr} />
-          </Grid>
-          <Grid xs={12} md={4} item>
-          <CustomInput
-          type=  "text"
-        disabled={loading}
-        value={formData.expectation}
-        label='Expectations*'
-        
-        onChange={(e) => {
-          setFormData({
-            ...formData,
-            expectation : e.target.value,
-          });
-        }}
-        setValidationErr={setValidationErr} />
-          </Grid>
-          <Grid xs={12} md={4} item>
-            <MobileDatePicker sx={{ minWidth: 336 }}
-              disabled={loading}
-              id="dob"
-              name="dob"
-              inputFormat="DD MMM,YYYY"
-              value={moment(formData.date)}
-              onChange={setDate}
-              type="date"
-              label={"Date Of Birth*"}
-              renderInput={(params) => (
-                <CustomInput
-                  {...params}
-                  sx={{ width: '100%' }}
-                />
-              )}
-            />
-          </Grid>
-         
-          <Grid xs={12} md={4} item>
             <FormControl margin="dense" sx={{ minWidth: '100%' }}>
               <InputLabel>Department*</InputLabel>
               <Select sx={{ minWidth: 100 }} 
@@ -254,8 +181,6 @@ function CandidateFormUi({
               <FormHelperText></FormHelperText>
             </FormControl>
           </Grid>
-          
-          
           <Grid xs={12} md={4} item>
             <FormControl margin="dense" sx={{ minWidth: '100%' }} >
               <InputLabel>Experience*</InputLabel>
@@ -279,6 +204,84 @@ function CandidateFormUi({
               <FormHelperText></FormHelperText>
             </FormControl>
           </Grid>
+          
+          
+        <Grid xs={12} md={4} item>
+        <CustomInput
+          type=  "text"
+        disabled={loading}
+        value={formData.location}
+        label='Location*'
+        
+                    iconEnd={<LocationSearchingIcon />}  
+              
+           
+        
+        onChange={(e) => {
+          setFormData({
+            ...formData,
+            location : e.target.value,
+          });
+        }}
+        setValidationErr={setValidationErr} />
+        </Grid>
+        <Grid xs={12} md={4} item>
+          <CustomInput
+          type=  "text"
+        disabled={loading}
+        value={formData.expectation}
+        label='Expectations*'
+        
+        onChange={(e) => {
+          setFormData({
+            ...formData,
+            expectation : e.target.value,
+          });
+        }}
+        setValidationErr={setValidationErr} />
+          </Grid>
+         
+         
+        <Grid xs={12} md={4} item>
+          <CustomInput
+          type=  "text"
+        disabled={loading}
+        value={formData.reference_from}
+        label='Reference Form'
+        // validate={() => {
+        //   return formData.relevant_experience ? true : `Last Name is required.`;
+        // }}
+        onChange={(e) => {
+          setFormData({
+            ...formData,
+            reference_from : e.target.value,
+          });
+        }}
+        setValidationErr={setValidationErr} />
+          </Grid>
+          
+         
+         
+          
+          <Grid xs={12} md={4} item>
+          <CustomInput
+          type=  "text"
+        disabled={loading}
+        value={formData.relevant_experience}
+        label='Relevant Experience'
+        // validate={() => {
+        //   return formData.relevant_experience ? true : `Last Name is required.`;
+        // }}
+        onChange={(e) => {
+          setFormData({
+            ...formData,
+            relevant_experience : e.target.value,
+          });
+        }}
+        setValidationErr={setValidationErr} />
+          </Grid>
+         
+         
           <Grid xs={12} md={4} item>
           <CustomInput
           id="outlined-number"
