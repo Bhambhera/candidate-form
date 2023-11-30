@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TextField,Box, FormControl, FormHelperText, Grid, InputLabel, MenuItem, Select, Stack, Typography, InputAdornment } from '@mui/material';
+import { TextField,Box,Link,Icon, AppBar, Toolbar, FormControl, FormHelperText, Grid, InputLabel, MenuItem, Select, Stack, Typography, InputAdornment, Snackbar } from '@mui/material';
 import CustomInput from '../Inputs/CustomInput';
 import SubmitButton from '../Buttons/SubmitButton';
 import CustomDatePicker from '../Layouts/Common/CustomDatePicker';
@@ -7,12 +7,67 @@ import LocationSearchingIcon from '@mui/icons-material/LocationSearching';
 import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
 import { center } from '../../assets/css/theme/common';
 import moment from 'moment';
+import Wehear from "./Wehear.jpg";
+import HomeIcon from '@mui/icons-material/Home';
+import MuiAlert from '@mui/material/Alert';
+import { validateForm } from './validateForm';
 
-function CandidateFormUi({ formData, setFormData, submit, setValidationErr, setDate }) {
-  const [selectedDepartment, setSelectedDepartment] = useState(null)
-  const loading = formData.disabled
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemText from "@mui/material/ListItemText";
 
-  return (
+
+
+ 
+  function CandidateFormUi({ formData, setFormData, submit, setValidationErr, setDate }) {
+    const [snackbarOpen, setSnackbarOpen] = useState(false);
+    const [snackbarMessage, setSnackbarMessage] = useState('');
+    const [requiredField, setRequiredField] = useState(null); // New state to store the required field
+    const [selectedDepartment, setSelectedDepartment] = useState(null);
+    const loading = formData.disabled;
+  
+    const handleValidation = () => {
+      const errors = validateForm(formData);
+      setValidationErr(errors);
+      
+      if (Object.keys(errors).length > 0) {
+        // Get the first field with an error
+        const firstErrorField = Object.keys(errors)[0];
+        setRequiredField(firstErrorField);
+        setSnackbarMessage(`${firstErrorField} is required.`);
+        setSnackbarOpen(true);
+      }
+  
+      return Object.keys(errors).length === 0;
+    };
+  
+    const handleSnackbarClose = () => {
+      setSnackbarOpen(false);
+    };
+  
+    const handleFormSubmit = () => {
+      if (handleValidation()) {
+        submit();
+      } else {
+        console.log("Form has validation errors");
+      }
+    };
+
+  return (<React.Fragment>
+    <AppBar sx={{ background: "#222222", height: "50px", position: "sticky" }}>
+  <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
+    <Link href="https://www.wehear.in" sx={{ margin: "auto" }}>
+      <img
+        src={Wehear}
+        alt="Wehear Logo"
+        style={{ width: "150px", height: "45px" }}
+        draggable="false"
+      />
+    </Link>
+    <Link href="https://www.wehear.in"></Link>
+  </Toolbar>
+</AppBar>
+
     <Stack spacing={2} sx={{ mb: 2,padding: '1%' }}>
       <Typography variant="h2" align='center' >
         <Box>
@@ -21,36 +76,37 @@ function CandidateFormUi({ formData, setFormData, submit, setValidationErr, setD
       </Typography>
       <Box sx={{ width: "100%" }}>
         <Grid container rowSpacing={3} columnSpacing={3} sx={{padding: '2%'}}>
-          <Grid xs={12} md={4} item>
+          
+        <Grid xs={12} md={4} item>
+          
           <CustomInput
-          type=  "text"
-        disabled={loading}
-        value={formData.first_name}
-        label='First Name*'
-        validate={() => {
-                      return (formData.first_name && formData.first_name != "") ? true : "First Name is required."
-                    }}
-        onChange={(e) => {
-          setFormData({
-            ...formData,
-            first_name : e.target.value,
-          });
-        }}
-        setValidationErr={setValidationErr} />
+                    type="text"
+                    disabled = {loading}
+                    value={formData.first_name}
+                    label="First Name*"
+                    
+                    onChange = { (e) => {
+                        setFormData ({
+                          ...formData,
+                          first_name : e.target.value
+                        })
+                      }
+                    }
+                    setValidationErr = {setValidationErr}
+                    />
+                    
           </Grid>
           <Grid xs={12} md={4} item>
           
           <CustomInput
-                    type='text'
+                    type="text"
                     disabled = {loading}
                     value={formData.middle_name}
                     label="Middle Name*"
-                    validate={() => {
-                      return (formData.middle_name && formData.middle_name != "") ? true : "Middle Name is required."
-                    }}
+                    
                     onChange = { (e) => {
                         setFormData ({
-                          err : "",
+                          ...formData,
                           middle_name : e.target.value
                         })
                       }
@@ -65,9 +121,7 @@ function CandidateFormUi({ formData, setFormData, submit, setValidationErr, setD
         disabled={loading}
         value={formData.last_name}
         label='Last Name*'
-        validate={() => {
-                      return (formData.last_name && formData.last_name != "") ? true : "Last Name is required."
-                    }}
+       
         onChange={(e) => {
           setFormData({
             ...formData,
@@ -84,9 +138,7 @@ function CandidateFormUi({ formData, setFormData, submit, setValidationErr, setD
         disabled={loading}
         value={formData.qualification}
         label='Qualification*'
-        validate={() => {
-                      return (formData.qualification && formData.qualification != "") ? true : "Qualification is required."
-                    }}
+        
         onChange={(e) => {
           setFormData({
             ...formData,
@@ -101,9 +153,7 @@ function CandidateFormUi({ formData, setFormData, submit, setValidationErr, setD
         disabled={loading}
         value={formData.position}
         label='Position*'
-        validate={() => {
-                      return (formData.position && formData.position != "") ? true : "Position is required."
-                    }}
+       
         onChange={(e) => {
           setFormData({
             ...formData,
@@ -138,9 +188,7 @@ function CandidateFormUi({ formData, setFormData, submit, setValidationErr, setD
         disabled={loading}
         value={formData.location}
         label='Location'
-        validate={() => {
-                      return (formData.location && formData.location != "") ? true : "Location is required."
-                    }}
+        
                     iconEnd={<LocationSearchingIcon />}  
               
            
@@ -176,9 +224,7 @@ function CandidateFormUi({ formData, setFormData, submit, setValidationErr, setD
         disabled={loading}
         value={formData.expectations}
         label='Expectations*'
-        validate={() => {
-          return formData.expectations ? true : `Expectations is required.`;
-        }}
+        
         onChange={(e) => {
           setFormData({
             ...formData,
@@ -245,7 +291,7 @@ function CandidateFormUi({ formData, setFormData, submit, setValidationErr, setD
                 name="experience"
                 value={formData.experience}
                 onChange={(e) => {
-                  setSelectedDepartment(e.target.value);
+                  
                   setFormData({
                     ...formData,
                     experience: e.target.value,
@@ -266,12 +312,7 @@ function CandidateFormUi({ formData, setFormData, submit, setValidationErr, setD
           label="Notice Period"
           value= {formData.notice_period}
           type="number"
-          onChange={(e) => {
-          setFormData({
-            ...formData,
-            notice_period : e.target.value,
-          });
-        }}
+          onChange={setDate}
           InputLabelProps={{
             shrink: true,
           }}
@@ -283,16 +324,23 @@ function CandidateFormUi({ formData, setFormData, submit, setValidationErr, setD
           
        
       <>
-        <Box sx={{center, width:'10%', padding : '1%'}}>
+      <Snackbar open={snackbarOpen} autoHideDuration={6000} onClose={handleSnackbarClose}>
+        <MuiAlert elevation={6} variant="filled" onClose={handleSnackbarClose} severity="error">
+          {snackbarMessage}
+        </MuiAlert>
+      </Snackbar>
+
+        <Box sx={{center, width:'10%', padding : '1%',marginc:'center'}}>
           <SubmitButton 
             loading={loading}
             type=""
             title={'Add'}
-            onClick={submit}
+            onClick={handleFormSubmit}
           />
         </Box>
       </>
     </Stack>
+    </React.Fragment>
   );
 }
 export default CandidateFormUi;

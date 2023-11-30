@@ -12,7 +12,7 @@ function CandidateFormControler() {
     first_name : '',
     middle_name : '',
     last_name : '',
-    date : '27 nov 2023',   
+    date : '',   
     position : '',
     department : '',
     total_experience : '',
