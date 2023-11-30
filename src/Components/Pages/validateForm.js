@@ -19,6 +19,9 @@ export const validateForm = (formData) => {
       errors.qualification = "Qualification is required.";
     }
   
+    if (!formData.department || formData.department === "") {
+      errors.department = "department is required.";
+    }
     if (!formData.position || formData.position === "") {
       errors.position = "Position is required.";
     }
@@ -38,11 +41,16 @@ export const validateForm = (formData) => {
     if (!formData.date || formData.date === "") {
       errors.date = "Date of Birth is required.";
     }
+    if (!formData.qualification || formData.qualification === "") {
+      errors.qualification = "qualification is required.";
+    }
   
     if (!formData.department || formData.department === "") {
       errors.department = "Department is required.";
     }
-  
+    if (!formData.notice_period || formData.notice_period  === "") {
+      errors.notice_period  = "notice period  is required.";
+    }
     // Add additional validations for other fields...
   
     return errors;

@@ -7,10 +7,10 @@ import LocationSearchingIcon from '@mui/icons-material/LocationSearching';
 import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
 import { center } from '../../assets/css/theme/common';
 import moment from 'moment';
-import Wehear from '../../assets/images/Wehear.jpg';
+import Wehear from "../../assets/images/Wehear.jpg";
 import HomeIcon from '@mui/icons-material/Home';
 import MuiAlert from '@mui/material/Alert';
-import { validateForm } from './validateForm';
+
 
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
@@ -18,40 +18,19 @@ import ListItemText from "@mui/material/ListItemText";
 
 
 
- 
-  function CandidateFormUi({ formData, setFormData, submit, setValidationErr, setDate }) {
-    const [snackbarOpen, setSnackbarOpen] = useState(false);
-    const [snackbarMessage, setSnackbarMessage] = useState('');
-    const [requiredField, setRequiredField] = useState(null); // New state to store the required field
-    const [selectedDepartment, setSelectedDepartment] = useState(null);
-    const loading = formData.disabled;
-  
-    const handleValidation = () => {
-      const errors = validateForm(formData);
-      setValidationErr(errors);
-      
-      if (Object.keys(errors).length > 0) {
-        // Get the first field with an error
-        const firstErrorField = Object.keys(errors)[0];
-        setRequiredField(firstErrorField);
-        setSnackbarMessage(`${firstErrorField} is required.`);
-        setSnackbarOpen(true);
-      }
-  
-      return Object.keys(errors).length === 0;
-    };
-  
-    const handleSnackbarClose = () => {
-      setSnackbarOpen(false);
-    };
-  
-    const handleFormSubmit = () => {
-      if (handleValidation()) {
-        submit();
-      } else {
-        console.log("Form has validation errors");
-      }
-    };
+function CandidateFormUi({
+  formData,
+  setFormData,
+  submit,
+  setValidationErr,
+  setDate,
+  snackbarOpen,
+  snackbarMessage,
+  handleSnackbarClose,
+  selectedDepartment,
+  setSelectedDepartment
+}) {
+  const loading = formData.disabled;
 
   return (<React.Fragment>
     <AppBar sx={{ background: "#222222", height: "50px", position: "sticky" }}>
@@ -306,7 +285,13 @@ import ListItemText from "@mui/material/ListItemText";
           label="Notice Period"
           value= {formData.notice_period}
           type="number"
-          onChange={setDate}
+          onChange={(e) => {
+                  
+                  setFormData({
+                    ...formData,
+                     notice_period: e.target.value,
+                  });
+                }}
           InputLabelProps={{
             shrink: true,
           }}
@@ -317,23 +302,18 @@ import ListItemText from "@mui/material/ListItemText";
       </Box> 
           
        
-      <>
+     
       <Snackbar open={snackbarOpen} autoHideDuration={6000} onClose={handleSnackbarClose}>
-        <MuiAlert elevation={6} variant="filled" onClose={handleSnackbarClose} severity="error">
-          {snackbarMessage}
-        </MuiAlert>
-      </Snackbar>
+          <MuiAlert elevation={6} variant="filled" onClose={handleSnackbarClose} severity="error">
+            {snackbarMessage}
+          </MuiAlert>
+        </Snackbar>
 
-        <Box sx={{center, width:'10%', padding : '1%',marginc:'center'}}>
-          <SubmitButton 
-            loading={loading}
-            type=""
-            title={'Add'}
-            onClick={handleFormSubmit}
-          />
+        {/* Submit Button */}
+        <Box sx={{ center, width: '10%', padding: '1%', marginc: 'center' }}>
+          <SubmitButton loading={loading} type="" title={'Add'} onClick={submit} />
         </Box>
-      </>
-    </Stack>
+      </Stack>
     </React.Fragment>
   );
 }
