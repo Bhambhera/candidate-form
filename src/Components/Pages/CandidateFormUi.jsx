@@ -201,13 +201,13 @@ function CandidateFormUi({
           <CustomInput
           type=  "text"
         disabled={loading}
-        value={formData.expectations}
+        value={formData.expectation}
         label='Expectations*'
         
         onChange={(e) => {
           setFormData({
             ...formData,
-            expectations : e.target.value,
+            expectation : e.target.value,
           });
         }}
         setValidationErr={setValidationErr} />

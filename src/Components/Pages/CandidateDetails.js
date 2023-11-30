@@ -3,6 +3,7 @@ import { Alert, Box, Grid, Typography } from '@mui/material'
 import React from 'react'
 
 function CandidateDetails({status, data}) {
+    console.log('candidate details called')
     const HtmlViewer = styled(Box)(({ theme }) => ({
         width: "100%",
         overflowX: "scroll",

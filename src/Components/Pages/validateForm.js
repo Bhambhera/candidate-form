@@ -34,8 +34,8 @@ export const validateForm = (formData) => {
       errors.location = "Location is required.";
     }
   
-    if (!formData.expectations || formData.expectations === "") {
-      errors.expectations = "Expectations is required.";
+    if (!formData.expectation || formData.expectation === "") {
+      errors.expectation = "Expectations is required.";
     }
   
     if (!formData.date || formData.date === "") {
