@@ -19,7 +19,7 @@ const initialState = {
 const modalReducer = (state = initialState, action) => {
 
     switch (action.type) {
-        case modalActionTypes.OPEN_MODAL:console.log('Open modal called');  return {
+        case modalActionTypes.OPEN_MODAL:  return {
             ...state,
             open: true,
             component: action.component,

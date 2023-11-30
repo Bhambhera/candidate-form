@@ -6,11 +6,10 @@ import { Cancel } from "@mui/icons-material";
 import SubmitButton, { ResetButton } from "./Buttons/SubmitButton";
 
 const Transition = forwardRef(function Transition(props, ref) {
-    return <Zoom direction="down" ref={ref} {...props} />;
+    return <Zoom direction="dwn" ref={ref} {...props} />;
 });
 
 const Modal = () => {
-
     const modal = useSelector(state => state.modal)
     const dispatch = useDispatch()
     const handleClose = () => { modal.onCancle ? modal.onCancle() : dispatch(closeModal()) }

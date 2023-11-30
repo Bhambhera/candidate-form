@@ -51,7 +51,7 @@ function CandidateFormControler() {
     console.log(res)
     dispatch(openModal({
       title : "Candidate Details",
-      component : <CandidateDetails></CandidateDetails>,
+      component : <CandidateDetails status='res' data={formData}/>,
       size : "md"
     }))
     setFormData(prevState => ({
@@ -62,6 +62,11 @@ function CandidateFormControler() {
   const handleApiError = (err) => {
     console.log('api provided error')
     console.log(err)
+    dispatch(openModal({
+      title : "Candidate Details",
+      component : <CandidateDetails status='err'/>,
+      size : "md"
+    }))
     setFormData(prevState => ({
       ...prevState,
       disabled : false 

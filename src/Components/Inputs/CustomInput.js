@@ -3,8 +3,6 @@ import { IconButton, InputAdornment, TextField } from "@mui/material"
 import { useState } from "react"
 
 const CustomInput = ({ setValidationErr, type, label, validate, ...props   }) => {
-  console.log('Type:', props.type);
-  console.log('Value:', props.value);
     const [inputType, setType] = useState(type ? type : 'text')
     const [err, setErr] = useState(null)
     const onBlur = (e) => {

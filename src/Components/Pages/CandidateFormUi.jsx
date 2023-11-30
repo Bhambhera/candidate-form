@@ -7,7 +7,7 @@ import LocationSearchingIcon from '@mui/icons-material/LocationSearching';
 import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
 import { center } from '../../assets/css/theme/common';
 import moment from 'moment';
-import Wehear from "./Wehear.jpg";
+import Wehear from '../../assets/images/Wehear.jpg';
 import HomeIcon from '@mui/icons-material/Home';
 import MuiAlert from '@mui/material/Alert';
 import { validateForm } from './validateForm';
