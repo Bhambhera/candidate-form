@@ -42,7 +42,7 @@ function CandidateDetails({status, data}) {
                     <Grid container spacing={3}>
                         <Grid item md={4} xs={6}>
                             <Typography mb={2} fontWeight={"bold"} variant="h5">Name of Candidate</Typography>
-                            <Typography variant="h6">{data.first_name}{data.middle_name}{data.last_name}</Typography>
+                            <Typography variant="h6">{data.first_name} {data.middle_name} {data.last_name}</Typography>
                         </Grid>
                         <Grid item md={4} xs={6}>
                             <Typography mb={2} fontWeight={"bold"} variant="h5">Date</Typography>

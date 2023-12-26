@@ -6,10 +6,12 @@ import React, { useState } from 'react';
   import CandidateDetails from './CandidateDetails';
   import { validateForm } from './validateForm';
 import { useDispatch } from 'react-redux';
- // Replace with your actual API URL
+import { useNavigate } from 'react-router-dom';
+import FormSubmitUi from './FormSubmitUi';
 
   function CandidateFormControler() {
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const defaultFormData = {
       err : '',
       first_name : '',
@@ -46,7 +48,7 @@ import { useDispatch } from 'react-redux';
     };
 
     const handleApiResponse = (res) => {
-      console.log('API response:', res);
+      navigate('/submitted')
       dispatch(openModal({
         title: 'Candidate Details',
         component: <CandidateDetails status='res' data={formData}/>,
@@ -56,7 +58,6 @@ import { useDispatch } from 'react-redux';
     };
 
     const handleApiError = (err) => {
-      console.error('API error:', err);
       dispatch(openModal({
         title: 'Candidate Details',
         component: <CandidateDetails status='err' />,
@@ -76,9 +77,10 @@ import { useDispatch } from 'react-redux';
                   ...prevState,
                   disabled : true
                 }))
-          const rootURL = 'https://localhost:8000/api/'
+          const rootURL = 'https://e6f6-2405-201-2004-d859-d1fb-fe67-68b9-797d.ngrok-free.app/api/candidate-form'
+          // const rootURL = 'https://jsonplaceholder.typicode.com/todos'
                   axios({
-                      url:`https://jsonplaceholder.typicode.com/todos/`, 
+                      url:`${rootURL}`, 
                       method:"post",
                       headers:{
                         "Content-Type":"application/json"

@@ -28,9 +28,7 @@ export const validateForm = (formData) => {
     }
    
   
-    if (!formData.experience || formData.experience === "") {
-        errors.experience = "Experience is required.";
-      }
+   
   
     if (!formData.location || formData.location === "") {
       errors.location = "Location is required.";

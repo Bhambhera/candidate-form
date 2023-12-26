@@ -285,7 +285,7 @@ function CandidateFormUi({
           <Grid xs={12} md={4} item>
           <CustomInput
           id="outlined-number"
-          label="Notice Period"
+          label="Notice Period *"
           value= {formData.notice_period}
           type="number"
           onChange={(e) => {
@@ -314,7 +314,7 @@ function CandidateFormUi({
 
         {/* Submit Button */}
         <Box sx={{ center, width: '10%', padding: '1%', marginc: 'center' }}>
-          <SubmitButton loading={loading} type="" title={'Add'} onClick={submit} />
+          <SubmitButton loading={loading} disabled = {loading} type="" title={'Add'} onClick={submit} />
         </Box>
       </Stack>
     </React.Fragment>
