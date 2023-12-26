@@ -27,7 +27,9 @@ export const validateForm = (formData) => {
       errors.department = "department is required.";
     }
    
-  
+    if (!formData.experience || formData.experience === "") {
+      errors.department = "department is required.";
+    }
    
   
     if (!formData.location || formData.location === "") {

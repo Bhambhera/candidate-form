@@ -314,7 +314,7 @@ function CandidateFormUi({
 
         {/* Submit Button */}
         <Box sx={{ center, width: '10%', padding: '1%', marginc: 'center' }}>
-          <SubmitButton loading={loading} disabled = {loading} type="" title={'Add'} onClick={submit} />
+          <SubmitButton loading={loading} disabled = {loading} type="" title={'Submit'} onClick={submit} />
         </Box>
       </Stack>
     </React.Fragment>
