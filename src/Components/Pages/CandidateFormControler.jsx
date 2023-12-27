@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
   import CandidateFormUi from './CandidateFormUi';
   import moment from 'moment';
   import axios from 'axios';
@@ -6,18 +6,22 @@ import React, { useState } from 'react';
   import CandidateDetails from './CandidateDetails';
   import { validateForm } from './validateForm';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import FormSubmitUi from './FormSubmitUi';
 
   function CandidateFormControler() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const {token} = useParams()
     const defaultFormData = {
+      token : '',
       err : '',
       first_name : '',
       middle_name : '',
       last_name : '',
-      date : '',   
+      date : '',
+      email : '',
+      phone : '',   
       position : '',
       department : '',
       total_experience : '',
@@ -27,7 +31,8 @@ import FormSubmitUi from './FormSubmitUi';
       location : '',
       notice_period : '',
       expectation : '',
-      disabled : false
+      disabled : false,
+     
     }
     const [formData, setFormData] = useState(defaultFormData)
 
@@ -42,6 +47,13 @@ import FormSubmitUi from './FormSubmitUi';
         date: formattedDate,
       });
     };
+
+    useEffect(() => {
+      setFormData({
+        ...formData,
+        token : token,
+      })
+    },[])
 
     const handleSnackbarClose = () => {
       setSnackbarOpen(false);
@@ -60,7 +72,7 @@ import FormSubmitUi from './FormSubmitUi';
     const handleApiError = (err) => {
       dispatch(openModal({
         title: 'Candidate Details',
-        component: <CandidateDetails status='err' />,
+        component: <CandidateDetails status='err' data={err?.message}/>,
         size: 'md',
       }))
       setFormData(prevState => ({
@@ -72,12 +84,11 @@ import FormSubmitUi from './FormSubmitUi';
     };
 
     const sendDetails = () => {
-          console.log('sending details')
           setFormData(prevState => ({
                   ...prevState,
                   disabled : true
                 }))
-          const rootURL = 'https://e6f6-2405-201-2004-d859-d1fb-fe67-68b9-797d.ngrok-free.app/api/candidate-form'
+          const rootURL = 'https://payrollv2-local-development.up.railway.app/api/candidate-form'
           // const rootURL = 'https://jsonplaceholder.typicode.com/todos'
                   axios({
                       url:`${rootURL}`, 
@@ -102,8 +113,9 @@ import FormSubmitUi from './FormSubmitUi';
       
       if (Object.keys(errors).length > 0) {
         const firstErrorField     = Object.keys(errors)[0];
+        const firstErrorMessage = errors[firstErrorField]
      
-        setSnackbarMessage(`${firstErrorField} is required.`);
+        setSnackbarMessage(`${firstErrorMessage}`);
         setSnackbarOpen(true);
       }
 
@@ -118,7 +130,6 @@ import FormSubmitUi from './FormSubmitUi';
         console.log("Form has validation errors");
       }
     };
-
 
 
 

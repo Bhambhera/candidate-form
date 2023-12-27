@@ -1,3 +1,4 @@
+import { validateEmail } from "../../Utils/Helper";
 
 
 export const validateForm = (formData) => {
@@ -16,6 +17,15 @@ export const validateForm = (formData) => {
     }
     if (!formData.date || formData.date === "") {
       errors.date = "Date of Birth is required.";
+    }
+    if (!formData.phone || formData.phone === "") {
+      errors.phone = "Contact Number  is required.";
+    }
+    if (!formData.email || formData.email === "") {
+      errors.email = "Email is required.";
+    }
+    if(!validateEmail(formData.email)) {
+      errors.invalid_email = "Email is not valid"
     }
     if (!formData.qualification || formData.qualification === "") {
       errors.qualification = "Qualification is required.";

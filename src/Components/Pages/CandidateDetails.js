@@ -99,7 +99,7 @@ function CandidateDetails({status, data}) {
                     error generated
                 </Alert>
                     <Typography>
-                        error generated
+                       {data}
                     </Typography>
                 </Box>
             </>

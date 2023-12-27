@@ -13,6 +13,7 @@ function App() {
       <Routes>
         <Route path='/' element={<CandidateFormControler />}></Route>
         <Route path='/submitted' element={<FormSubmitUi/>}></Route>
+        <Route path='/:token' element={<CandidateFormControler/>}></Route>
       </Routes>
     </BrowserRouter>
     </>

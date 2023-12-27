@@ -15,6 +15,7 @@ import MuiAlert from '@mui/material/Alert';
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
+import { validateEmail } from '../../Utils/Helper';
 
 
 
@@ -128,21 +129,57 @@ function CandidateFormUi({
               )}
             />
           </Grid>
+          <Grid xs={12} md={4} item>
+            <CustomInput
+              type=  "number"
+              disabled={loading}
+              value={formData.phone}
+              label='Contact Number*'
+              onChange={(e) => {
+                setFormData({
+                    ...formData,
+                  phone : e.target.value,
+                });
+              }}
+              setValidationErr={setValidationErr} 
+            />
+          </Grid>
+          <Grid xs={12} md={4} item>
+            <CustomInput
+              type=  "email"
+              disabled={loading}
+              value={formData.email}
+              label='Email*'
+              onChange={(e) => {
+                setFormData({
+                    ...formData,
+                  email : e.target.value,
+                });
+              }} 
+              validate={() => {
+                if (!validateEmail(formData.email)) {
+                  return "Invalid Email"
+                }
+                return true
+              }} 
+              setValidationErr={setValidationErr} 
+            />
+          </Grid>
         <Grid xs={12} md={4} item>
           <CustomInput
-          type=  "text"
-        disabled={loading}
-        value={formData.qualification}
-        label='Qualification*'
-        
-        onChange={(e) => {
-          setFormData({
-            ...formData,
-           qualification : e.target.value,
-          });
-        }}
-        setValidationErr={setValidationErr} />
-          </Grid>
+            type=  "text"
+            disabled={loading}
+            value={formData.qualification}
+            label='Qualification*'
+            onChange={(e) => {
+              setFormData({
+                  ...formData,
+                qualification : e.target.value,
+              });
+            }}
+            setValidationErr={setValidationErr} 
+          />
+        </Grid>
           <Grid xs={12} md={4} item>
           <CustomInput
           type=  "text"
