@@ -3,7 +3,6 @@ import { Alert, Box, Grid, Typography } from '@mui/material'
 import React from 'react'
 
 function CandidateDetails({status, data}) {
-    console.log('candidate details called')
     const HtmlViewer = styled(Box)(({ theme }) => ({
         width: "100%",
         overflowX: "scroll",
@@ -42,15 +41,15 @@ function CandidateDetails({status, data}) {
                     <Grid container spacing={3}>
                         <Grid item md={4} xs={6}>
                             <Typography mb={2} fontWeight={"bold"} variant="h5">Name of Candidate</Typography>
-                            <Typography variant="h6">{data.first_name} {data.middle_name} {data.last_name}</Typography>
+                            <Typography variant="h6">{data.candidate_first_name} {data.candidate_middle_name} {data.candidate_last_name}</Typography>
                         </Grid>
                         <Grid item md={4} xs={6}>
                             <Typography mb={2} fontWeight={"bold"} variant="h5">Date</Typography>
-                            <Typography variant="h6">{data.date}</Typography>
+                            <Typography variant="h6">{data.dob}</Typography>
                         </Grid>
                         <Grid item md={4} xs={6}>
                             <Typography mb={2} fontWeight={"bold"} variant="h5">Applied Position</Typography>
-                            <Typography variant="h6">{data.position}</Typography>
+                            <Typography variant="h6">{data.candidate_position}</Typography>
                         </Grid>
                         <Grid item md={4} xs={6}>
                             <Typography mb={2} fontWeight={"bold"} variant="h5">Department</Typography>
@@ -58,7 +57,7 @@ function CandidateDetails({status, data}) {
                         </Grid>
                         <Grid item md={4} xs={6}>
                             <Typography mb={2} fontWeight={"bold"} variant="h5">Total Years Of Expeirence</Typography>
-                            <Typography variant="h6">{data.experience}</Typography>
+                            <Typography variant="h6">{data.total_years_of_experience}</Typography>
                         </Grid>
                         <Grid item md={4} xs={6}>
                             <Typography mb={2} fontWeight={"bold"} variant="h5">Relevant Experience</Typography>
@@ -70,11 +69,11 @@ function CandidateDetails({status, data}) {
                         </Grid>
                         <Grid item md={4} xs={6}>
                             <Typography mb={2} fontWeight={"bold"} variant="h5">Reference From</Typography>
-                            <Typography variant="h6">{data.reference ? data.reference : 'No Reference'}</Typography>
+                            <Typography variant="h6">{data.reference_from ? data.reference_from : 'No Reference'}</Typography>
                         </Grid>
                         <Grid item md={4} xs={6}>
                             <Typography mb={2} fontWeight={"bold"} variant="h5">Current Location</Typography>
-                            <Typography variant="h6">{data.location}</Typography>
+                            <Typography variant="h6">{data.current_location}</Typography>
                         </Grid>
                         <Grid item md={4} xs={6}>
                             <Typography mb={2} fontWeight={"bold"} variant="h5">Notice Period</Typography>

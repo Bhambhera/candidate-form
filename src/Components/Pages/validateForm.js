@@ -4,45 +4,45 @@ import { validateEmail } from "../../Utils/Helper";
 export const validateForm = (formData) => {
     const errors = {};
   
-    if (!formData.first_name || formData.first_name === "") {
+    if (!formData.candidate_first_name || formData.candidate_first_name === "") {
       errors.first_name = "First Name is required.";
     }
   
-    if (!formData.middle_name || formData.middle_name === "") {
+    if (!formData.candidate_middle_name || formData.candidate_middle_name === "") {
       errors.middle_name = "Middle Name is required.";
     }
   
-    if (!formData.last_name || formData.last_name === "") {
+    if (!formData.candidate_last_name || formData.candidate_last_name === "") {
       errors.last_name = "Last Name is required.";
     }
-    if (!formData.date || formData.date === "") {
+    if (!formData.dob || formData.dob === "") {
       errors.date = "Date of Birth is required.";
     }
-    if (!formData.phone || formData.phone === "") {
+    if (!formData.candidate_phone || formData.candidate_phone === "") {
       errors.phone = "Contact Number  is required.";
     }
-    if (!formData.email || formData.email === "") {
+    if (!formData.candidate_email || formData.candidate_email === "") {
       errors.email = "Email is required.";
     }
-    if(!validateEmail(formData.email)) {
+    if(!validateEmail(formData.candidate_email)) {
       errors.invalid_email = "Email is not valid"
     }
     if (!formData.qualification || formData.qualification === "") {
       errors.qualification = "Qualification is required.";
     }
-    if (!formData.position || formData.position === "") {
+    if (!formData.candidate_position || formData.candidate_position === "") {
       errors.position = "Position is required.";
     }
     if (!formData.department || formData.department === "") {
       errors.department = "department is required.";
     }
    
-    if (!formData.experience || formData.experience === "") {
+    if (!formData.total_years_of_experience || formData.total_years_of_experience === "") {
       errors.department = "department is required.";
     }
    
   
-    if (!formData.location || formData.location === "") {
+    if (!formData.current_location || formData.current_location === "") {
       errors.location = "Location is required.";
     }
   

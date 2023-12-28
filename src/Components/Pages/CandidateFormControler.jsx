@@ -16,19 +16,19 @@ import FormSubmitUi from './FormSubmitUi';
     const defaultFormData = {
       token : '',
       err : '',
-      first_name : '',
-      middle_name : '',
-      last_name : '',
-      date : '',
-      email : '',
-      phone : '',   
-      position : '',
+      candidate_first_name : '',
+      candidate_middle_name : '',
+      candidate_last_name : '',
+      dob : '',
+      candidate_email : '',
+      candidate_phone : '',   
+      candidate_position : '',
       department : '',
-      total_experience : '',
+      total_years_of_experience : '',
       relevant_experience : '',
       qualification : '',
-      reference : '',
-      location : '',
+      reference_from : '',
+      current_location : '',
       notice_period : '',
       expectation : '',
       disabled : false,
@@ -44,22 +44,32 @@ import FormSubmitUi from './FormSubmitUi';
       const formattedDate = moment(date).format('DD MMM,YYYY');
       setFormData({
         ...formData,
-        date: formattedDate,
+        dob: formattedDate,
       });
     };
+
+    console.log(formData.token)
+
 
     useEffect(() => {
       setFormData({
         ...formData,
         token : token,
       })
-    },[])
+      const retreivedToken = JSON.parse(localStorage.getItem('token'))
+      if(formData.token === retreivedToken) {
+        navigate('/submitted')
+      }
+    },[token])
 
     const handleSnackbarClose = () => {
       setSnackbarOpen(false);
     };
 
     const handleApiResponse = (res) => {
+      localStorage.setItem('token', JSON.stringify(formData.token))
+      console.log("local storage")
+      console.log(localStorage)
       navigate('/submitted')
       dispatch(openModal({
         title: 'Candidate Details',
@@ -72,7 +82,7 @@ import FormSubmitUi from './FormSubmitUi';
     const handleApiError = (err) => {
       dispatch(openModal({
         title: 'Candidate Details',
-        component: <CandidateDetails status='err' data={err?.message}/>,
+        component: <CandidateDetails status='err' data={err?.response?.data?.data?.[0]?.msg ?? err?.response?.data?.message}/>,
         size: 'md',
       }))
       setFormData(prevState => ({
@@ -94,6 +104,7 @@ import FormSubmitUi from './FormSubmitUi';
                       url:`${rootURL}`, 
                       method:"post",
                       headers:{
+                        Authorization : `${formData.token}`, 
                         "Content-Type":"application/json"
                       },
                       data:formData
@@ -104,7 +115,6 @@ import FormSubmitUi from './FormSubmitUi';
                     .catch(err => [
                       handleApiError(err)
                     ])
-          console.log(formData)
         }
 
     const handleValidation = () => {
@@ -152,119 +162,3 @@ import FormSubmitUi from './FormSubmitUi';
   }
 
   export default CandidateFormControler;
-
-
-// import React, { useState } from 'react'
-// import CandidateFormUi from './CandidateFormUi'
-// import moment from 'moment'
-// import { useParams } from 'react-router-dom'
-// import { useDispatch, useSelector } from 'react-redux'
-// import { handlingChange, sendingDetails } from '../../Store/Actions/CandidateActions'
-// import axios from 'axios'
-// import { openModal } from '../../Store/Actions/ModalActions'
-// import CandidateDetails from './CandidateDetails'
-// import { Modal } from '@mui/material'
-
-// function CandidateFormControler() {
-//   const dispatch = useDispatch()
-//   const defaultFormData = {
-//     err : '',
-//     first_name : '',
-//     middle_name : '',
-//     last_name : '',
-//     date : '',   
-//     position : '',
-//     department : '',
-//     total_experience : '',
-//     relevant_experience : '',
-//     qualification : '',
-//     reference : '',
-//     location : '',
-//     notice_period : '',
-//     expectation : '',
-//     disabled : false
-//   }
-//   const [formData, setFormData] = useState(defaultFormData)
-//   const [validationErr, setValidationErr] = useState(null)
-//   const setDate = (date) => {
-//     const parsedDate = moment(date)
-//     const formattedDate = parsedDate.format("DD MMM,YYYY")
-//     setFormData({
-//       ...formData,
-//       date : formattedDate
-//     })
-//   }
-//   const handleError = () => {
-//     console.log('Please enter details')
-//     alert('Please enter details')
-//     setFormData(prevState => ({
-//       ...prevState,
-//       disabled : false 
-//     }))
-//   }
-//   const handleApiResponse = (res) => {
-//     console.log('api provided response')
-//     console.log(res)
-//     dispatch(openModal({
-//       title : "Candidate Details",
-//       component : <CandidateDetails status/>,
-//       size : "md"
-//     }))
-//     setFormData(prevState => ({
-//       ...prevState,
-//       disabled : false 
-//     }))
-//   }
-//   const handleApiError = (err) => {
-//     console.log('api provided error')
-//     console.log(err)
-//     setFormData(prevState => ({
-//       ...prevState,
-//       disabled : false 
-//     }))
-//   }
-//   const sendDetails = () => {
-//     console.log('sending details')
-//     const rootURL = 'https://localhost:8000/api/'
-//             axios({
-//                 url:`https://jsonplaceholder.typicode.com/todos/`, 
-//                 method:"post",
-//                 headers:{
-//                   "Content-Type":"application/json"
-//                 },
-//                 data:formData
-//               })
-//               .then(res => {
-//                   handleApiResponse(res)
-//               })
-//               .catch(err => [
-//                 handleApiError(err)
-//               ])
-//     console.log(formData)
-//   }
-  
-//   const submit = (e) => {
-//     console.log('submit function called')
-//     e?.preventDefault()
-//     setFormData(prevState => ({
-//       ...prevState,
-//       disabled : true 
-//     }))
-//     //formData.first_name || formData.middle_name || formData.last_name || formData.date || formData.position || formData.department || formData.total_experience || formData.relevant_experience || formData.qualification || formData.reference || formData.location || formData.notice_period || formData.expectation == '' ? handleError() : sendDetails() 
-//      validationErr == null ? sendDetails() : handleError()
-//   }
-//     console.log(validationErr)
-//   return (
-//     <>
-//     <CandidateFormUi 
-//         formData={formData} 
-//         setFormData={setFormData} 
-//         submit={submit}
-//         setValidationErr = {setValidationErr}
-//         setDate={setDate}
-//          />
-//     </>
-//   )
-// }
-
-// export default CandidateFormControler

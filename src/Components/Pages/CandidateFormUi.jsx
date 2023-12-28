@@ -1,20 +1,13 @@
-import React, { useState } from 'react';
-import { TextField,Box,Link,Icon, AppBar, Toolbar, FormControl, FormHelperText, Grid, InputLabel, MenuItem, Select, Stack, Typography, InputAdornment, Snackbar } from '@mui/material';
+import React from 'react';
+import {Box,Link, AppBar, Toolbar, FormControl, FormHelperText, Grid, InputLabel, MenuItem, Select, Stack, Typography, Snackbar } from '@mui/material';
 import CustomInput from '../Inputs/CustomInput';
 import SubmitButton from '../Buttons/SubmitButton';
-import CustomDatePicker from '../Layouts/Common/CustomDatePicker';
 import LocationSearchingIcon from '@mui/icons-material/LocationSearching';
 import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
 import { center } from '../../assets/css/theme/common';
 import moment from 'moment';
 import Wehear from "../../assets/images/Wehear.jpg";
-import HomeIcon from '@mui/icons-material/Home';
 import MuiAlert from '@mui/material/Alert';
-
-
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemText from "@mui/material/ListItemText";
 import { validateEmail } from '../../Utils/Helper';
 
 
@@ -62,13 +55,13 @@ function CandidateFormUi({
           <CustomInput
                     type="text"
                     disabled = {loading}
-                    value={formData.first_name}
+                    value={formData.candidate_first_name}
                     label="First Name*"
                     
                     onChange = { (e) => {
                         setFormData ({
                           ...formData,
-                          first_name : e.target.value
+                          candidate_first_name : e.target.value
                         })
                       }
                     }
@@ -77,38 +70,33 @@ function CandidateFormUi({
                     
           </Grid>
           <Grid xs={12} md={4} item>
-          
-          <CustomInput
-                    type="text"
-                    disabled = {loading}
-                    value={formData.middle_name}
-                    label="Middle Name*"
-                    
-                    onChange = { (e) => {
-                        setFormData ({
-                          ...formData,
-                          middle_name : e.target.value
-                        })
-                      }
-                    }
-                    setValidationErr = {setValidationErr}
-                    />
-                    
+            <CustomInput
+              type="text"
+              disabled = {loading}
+              value={formData.candidate_middle_name}
+              label="Middle Name*"
+              onChange = { (e) => {
+                setFormData ({
+                  ...formData,
+                  candidate_middle_name : e.target.value
+                })
+              }}
+              setValidationErr = {setValidationErr}
+            />        
           </Grid>
           <Grid xs={12} md={4} item>
-          <CustomInput
-          type=  "text"
-        disabled={loading}
-        value={formData.last_name}
-        label='Last Name*'
-       
-        onChange={(e) => {
-          setFormData({
-            ...formData,
-            last_name : e.target.value,
-          });
-        }}
-        setValidationErr={setValidationErr} />
+            <CustomInput
+              type=  "text"
+              disabled={loading}
+              value={formData.candidate_last_name}
+              label='Last Name*'
+              onChange={(e) => {
+                setFormData({
+                  ...formData,
+                  candidate_last_name : e.target.value,
+                });
+              }}
+              setValidationErr={setValidationErr} />
           </Grid>
         
           <Grid xs={12} md={4} item>
@@ -117,7 +105,7 @@ function CandidateFormUi({
               id="dob"
               name="dob"
               inputFormat="DD MMM,YYYY"
-              value={moment(formData.date)}
+              value={moment(formData.dob)}
               onChange={setDate}
               type="date"
               label={"Date Of Birth*"}
@@ -133,12 +121,12 @@ function CandidateFormUi({
             <CustomInput
               type=  "number"
               disabled={loading}
-              value={formData.phone}
+              value={formData.candidate_phone}
               label='Contact Number*'
               onChange={(e) => {
                 setFormData({
                     ...formData,
-                  phone : e.target.value,
+                    candidate_phone : e.target.value,
                 });
               }}
               setValidationErr={setValidationErr} 
@@ -148,16 +136,16 @@ function CandidateFormUi({
             <CustomInput
               type=  "email"
               disabled={loading}
-              value={formData.email}
+              value={formData.candidate_email}
               label='Email*'
               onChange={(e) => {
                 setFormData({
-                    ...formData,
-                  email : e.target.value,
+                  ...formData,
+                  candidate_email : e.target.value,
                 });
               }} 
               validate={() => {
-                if (!validateEmail(formData.email)) {
+                if (!validateEmail(formData.candidate_email)) {
                   return "Invalid Email"
                 }
                 return true
@@ -165,35 +153,35 @@ function CandidateFormUi({
               setValidationErr={setValidationErr} 
             />
           </Grid>
-        <Grid xs={12} md={4} item>
-          <CustomInput
-            type=  "text"
-            disabled={loading}
-            value={formData.qualification}
-            label='Qualification*'
-            onChange={(e) => {
-              setFormData({
-                  ...formData,
-                qualification : e.target.value,
-              });
-            }}
-            setValidationErr={setValidationErr} 
-          />
-        </Grid>
           <Grid xs={12} md={4} item>
-          <CustomInput
-          type=  "text"
-        disabled={loading}
-        value={formData.position}
-        label='Position*'
-       
-        onChange={(e) => {
-          setFormData({
-            ...formData,
-            position : e.target.value,
-          });
-        }}
-        setValidationErr={setValidationErr} />
+            <CustomInput
+              type=  "text"
+              disabled={loading}
+              value={formData.qualification}
+              label='Qualification*'
+              onChange={(e) => {
+                setFormData({
+                  ...formData,
+                  qualification : e.target.value,
+                });
+              }}
+              setValidationErr={setValidationErr} 
+            />
+          </Grid>
+          <Grid xs={12} md={4} item>
+            <CustomInput
+              type=  "text"
+              disabled={loading}
+              value={formData.candidate_position}
+              label='Position*'
+              onChange={(e) => {
+                setFormData({
+                  ...formData,
+                  candidate_position : e.target.value,
+                });
+              }}
+              setValidationErr={setValidationErr} 
+            />
           </Grid>
           <Grid xs={12} md={4} item>
             <FormControl margin="dense" sx={{ minWidth: '100%' }}>
@@ -224,121 +212,121 @@ function CandidateFormUi({
               <Select sx={{ minWidth: 100 }}
                 label={"experience*"}
                 name="experience"
-                value={formData.experience}
+                value={formData.total_years_of_experience}
                 onChange={(e) => {
                   
                   setFormData({
                     ...formData,
-                    experience: e.target.value,
+                    total_years_of_experience: e.target.value,
                   });
                 }}
               >
-                <MenuItem value="0-3">0-3</MenuItem>
-                <MenuItem value="3-5">3-5</MenuItem>
-                <MenuItem value="5-7">5-7</MenuItem>
-                <MenuItem value="7-10">7-10</MenuItem>
+                <MenuItem value="0">0</MenuItem>
+                <MenuItem value="0.5">0.5</MenuItem>
+                <MenuItem value="1">1</MenuItem>
+                <MenuItem value="1.5">1.5</MenuItem>
+                <MenuItem value="2">2</MenuItem>
+                <MenuItem value="2.5">2.5</MenuItem>
+                <MenuItem value="3">3</MenuItem>
+                <MenuItem value="3.5">3.5</MenuItem>
+                <MenuItem value="4">4</MenuItem>
+                <MenuItem value="4.5">4.5</MenuItem>
+                <MenuItem value="5">5</MenuItem>
+                <MenuItem value="5.5">5.5</MenuItem>
+                <MenuItem value="6">6</MenuItem>
+                <MenuItem value="6.5">6.5</MenuItem>
+                <MenuItem value="7">7</MenuItem>
+                <MenuItem value="7.5">7.5</MenuItem>
+                <MenuItem value="8">8</MenuItem>
+                <MenuItem value="8.5">8.5</MenuItem>
+                <MenuItem value="9">9</MenuItem>
+                <MenuItem value="9.5">9.5</MenuItem>
+                <MenuItem value="10">10</MenuItem>
+                <MenuItem value="11">More Than 10</MenuItem>
               </Select>
               <FormHelperText></FormHelperText>
             </FormControl>
-          </Grid>
-          
-          
-        <Grid xs={12} md={4} item>
-        <CustomInput
-          type=  "text"
-        disabled={loading}
-        value={formData.location}
-        label='Location*'
-        
-                    iconEnd={<LocationSearchingIcon />}  
-              
-           
-        
-        onChange={(e) => {
-          setFormData({
-            ...formData,
-            location : e.target.value,
-          });
-        }}
-        setValidationErr={setValidationErr} />
-        </Grid>
-        <Grid xs={12} md={4} item>
-          <CustomInput
-          type=  "text"
-        disabled={loading}
-        value={formData.expectation}
-        label='Expectations*'
-        
-        onChange={(e) => {
-          setFormData({
-            ...formData,
-            expectation : e.target.value,
-          });
-        }}
-        setValidationErr={setValidationErr} />
-          </Grid>
-         
-         
-        <Grid xs={12} md={4} item>
-          <CustomInput
-          type=  "text"
-        disabled={loading}
-        value={formData.reference_from}
-        label='Reference Form'
-        // validate={() => {
-        //   return formData.relevant_experience ? true : `Last Name is required.`;
-        // }}
-        onChange={(e) => {
-          setFormData({
-            ...formData,
-            reference_from : e.target.value,
-          });
-        }}
-        setValidationErr={setValidationErr} />
-          </Grid>
-          
-         
-         
-          
+          </Grid> 
           <Grid xs={12} md={4} item>
-          <CustomInput
-          type=  "text"
-        disabled={loading}
-        value={formData.relevant_experience}
-        label='Relevant Experience'
-        // validate={() => {
-        //   return formData.relevant_experience ? true : `Last Name is required.`;
-        // }}
-        onChange={(e) => {
-          setFormData({
-            ...formData,
-            relevant_experience : e.target.value,
-          });
-        }}
-        setValidationErr={setValidationErr} />
+            <CustomInput
+              type=  "text"
+              disabled={loading}
+              value={formData.current_location}
+              label='Location*'
+              iconEnd={<LocationSearchingIcon />}  
+              onChange={(e) => {
+                setFormData({
+                  ...formData,
+                  current_location : e.target.value,
+                });
+              }}
+              setValidationErr={setValidationErr} 
+            />
           </Grid>
-         
-         
           <Grid xs={12} md={4} item>
-          <CustomInput
-          id="outlined-number"
-          label="Notice Period *"
-          value= {formData.notice_period}
-          type="number"
-          onChange={(e) => {
-                  
-                  setFormData({
-                    ...formData,
-                     notice_period: e.target.value,
-                  });
-                }}
-          InputLabelProps={{
-            shrink: true,
-          }}
-        />
-        
+            <CustomInput
+              type=  "number"
+              disabled={loading}
+              value={formData.expectation}
+              label='Expectations*'
+              onChange={(e) => {
+                setFormData({
+                  ...formData,
+                  expectation : e.target.value,
+                });
+              }}
+              setValidationErr={setValidationErr} 
+            />
+          </Grid>
+          <Grid xs={12} md={4} item>
+            <CustomInput
+              type=  "text"
+              disabled={loading}
+              value={formData.reference_from}
+              label='Reference Form'
+              onChange={(e) => {
+                setFormData({
+                  ...formData,
+                  reference_from : e.target.value,
+                });
+              }}
+              setValidationErr={setValidationErr} 
+            />
+          </Grid>
+          <Grid xs={12} md={4} item>
+            <CustomInput
+              type=  "number"
+              disabled={loading}
+              value={formData.relevant_experience}
+              label='Relevant Experience'
+              onChange={(e) => {
+                setFormData({
+                  ...formData,
+                  relevant_experience : e.target.value,
+                });
+              }}
+              setValidationErr={setValidationErr} 
+            />
+          </Grid>
+          <Grid xs={12} md={4} item>
+            <CustomInput
+            id="outlined-number"
+            label="Notice Period *"
+            value= {formData.notice_period}
+            type="number"
+            onChange={(e) => {
+                    
+                    setFormData({
+                      ...formData,
+                      notice_period: e.target.value,
+                    });
+                  }}
+            InputLabelProps={{
+              shrink: true,
+            }}
+          />
         </Grid> 
-        </Grid>
+      </Grid>
       </Box> 
           
        
