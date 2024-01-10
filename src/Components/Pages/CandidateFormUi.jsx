@@ -21,8 +21,8 @@ function CandidateFormUi({
   snackbarOpen,
   snackbarMessage,
   handleSnackbarClose,
-  selectedDepartment,
-  setSelectedDepartment
+  selectedPosition,
+  setSelectedPosition,
 }) {
   const loading = formData.disabled;
 
@@ -48,7 +48,7 @@ function CandidateFormUi({
         </Box>
       </Typography>
       <Box sx={{ width: "100%" }}>
-        <Grid container rowSpacing={3} columnSpacing={3} sx={{padding: '2%'}}>
+        <Grid container rowSpacing={2} columnSpacing={2} sx={{padding: '2%'}}>
           
         <Grid xs={12} md={4} item>
           
@@ -56,8 +56,8 @@ function CandidateFormUi({
                     type="text"
                     disabled = {loading}
                     value={formData.candidate_first_name}
-                    label="First Name*"
-                    
+                    label="First Name*"a
+                    autoFocus = {true}
                     onChange = { (e) => {
                         setFormData ({
                           ...formData,
@@ -169,42 +169,44 @@ function CandidateFormUi({
             />
           </Grid>
           <Grid xs={12} md={4} item>
-            <CustomInput
-              type=  "text"
-              disabled={loading}
-              value={formData.candidate_position}
-              label='Position*'
-              onChange={(e) => {
-                setFormData({
-                  ...formData,
-                  candidate_position : e.target.value,
-                });
-              }}
-              setValidationErr={setValidationErr} 
-            />
-          </Grid>
-          <Grid xs={12} md={4} item>
-            <FormControl margin="dense" sx={{ minWidth: '100%' }}>
-              <InputLabel>Department*</InputLabel>
+          <FormControl margin="dense" sx={{ minWidth: '100%' }}>
+              <InputLabel>Position*</InputLabel>
               <Select sx={{ minWidth: 100 }} 
-                label={"Department*"}
-                name="Department"
-                value={selectedDepartment}
+                label={"Position*"}
+                name="Position"
+                value={selectedPosition}
                 onChange={(e) => {
-                  setSelectedDepartment(e.target.value);
+                  setSelectedPosition(e.target.value);
                   setFormData({
                     ...formData,
-                    department: e.target.value,
+                    candidate_position: e.target.value,
                   });
                 }}
               >
                 <MenuItem value="intern">Intern</MenuItem>
                 <MenuItem value="full time employee">Full Time Employee</MenuItem>
                 <MenuItem value="part time employee">Part Time Employee</MenuItem>
-                <MenuItem value="HR">HR</MenuItem>
+                <MenuItem value="work form home">Work From Home</MenuItem>
+                <MenuItem value="freelancer">Freelancer</MenuItem>
               </Select>
               <FormHelperText></FormHelperText>
             </FormControl>
+          </Grid>
+          <Grid xs={12} md={4} item>
+            <CustomInput
+              type=  "text"
+              disabled={loading}
+              value={formData.department}
+              label='Department*'
+              placeholder = "Department to be applied"
+              onChange={(e) => {
+                setFormData({
+                  ...formData,
+                  department : e.target.value,
+                });
+              }}
+              setValidationErr={setValidationErr} 
+            />
           </Grid>
           <Grid xs={12} md={4} item>
             <FormControl margin="dense" sx={{ minWidth: '100%' }} >
@@ -214,7 +216,6 @@ function CandidateFormUi({
                 name="experience"
                 value={formData.total_years_of_experience}
                 onChange={(e) => {
-                  
                   setFormData({
                     ...formData,
                     total_years_of_experience: e.target.value,
@@ -246,6 +247,22 @@ function CandidateFormUi({
               </Select>
               <FormHelperText></FormHelperText>
             </FormControl>
+          </Grid>
+          <Grid xs={12} md={4} item>
+            <CustomInput
+              type=  "number"
+              disabled={loading}
+              value={formData.relevant_experience}
+              placeholder = "Related Experience in Years"
+              label='Relevant Experience'
+              onChange={(e) => {
+                setFormData({
+                  ...formData,
+                  relevant_experience : e.target.value,
+                });
+              }}
+              setValidationErr={setValidationErr} 
+            />
           </Grid> 
           <Grid xs={12} md={4} item>
             <CustomInput
@@ -269,6 +286,7 @@ function CandidateFormUi({
               disabled={loading}
               value={formData.expectation}
               label='Expectations*'
+              placeholder = "In terms of LPA"
               onChange={(e) => {
                 setFormData({
                   ...formData,
@@ -283,7 +301,7 @@ function CandidateFormUi({
               type=  "text"
               disabled={loading}
               value={formData.reference_from}
-              label='Reference Form'
+              label='Reference From'
               onChange={(e) => {
                 setFormData({
                   ...formData,
@@ -295,24 +313,10 @@ function CandidateFormUi({
           </Grid>
           <Grid xs={12} md={4} item>
             <CustomInput
-              type=  "number"
-              disabled={loading}
-              value={formData.relevant_experience}
-              label='Relevant Experience'
-              onChange={(e) => {
-                setFormData({
-                  ...formData,
-                  relevant_experience : e.target.value,
-                });
-              }}
-              setValidationErr={setValidationErr} 
-            />
-          </Grid>
-          <Grid xs={12} md={4} item>
-            <CustomInput
             id="outlined-number"
             label="Notice Period *"
             value= {formData.notice_period}
+            placeholder = "In terms of Month"
             type="number"
             onChange={(e) => {
                     

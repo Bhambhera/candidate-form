@@ -33,13 +33,15 @@ export const validateForm = (formData) => {
     if (!formData.candidate_position || formData.candidate_position === "") {
       errors.position = "Position is required.";
     }
+    if (!formData.total_years_of_experience || formData.total_years_of_experience === "") {
+      errors.department = "Experience is required.";
+    }
+
     if (!formData.department || formData.department === "") {
-      errors.department = "department is required.";
+      errors.department = "Department is required.";
     }
    
-    if (!formData.total_years_of_experience || formData.total_years_of_experience === "") {
-      errors.department = "department is required.";
-    }
+    
    
   
     if (!formData.current_location || formData.current_location === "") {
@@ -56,7 +58,6 @@ export const validateForm = (formData) => {
     if (!formData.notice_period || formData.notice_period  === "") {
       errors.notice_period  = "notice period  is required.";
     }
-    // Add additional validations for other fields...
   
     return errors;
   };

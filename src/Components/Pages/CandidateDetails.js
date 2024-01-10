@@ -39,49 +39,49 @@ function CandidateDetails({status, data}) {
                         Candidate Details Successfully Submitted
                     </Alert>
                     <Grid container spacing={3}>
-                        <Grid item md={4} xs={6}>
+                        <Grid item md={4} xs={12}>
                             <Typography mb={2} fontWeight={"bold"} variant="h5">Name of Candidate</Typography>
                             <Typography variant="h6">{data.candidate_first_name} {data.candidate_middle_name} {data.candidate_last_name}</Typography>
                         </Grid>
-                        <Grid item md={4} xs={6}>
+                        <Grid item md={4} xs={12}>
                             <Typography mb={2} fontWeight={"bold"} variant="h5">Date</Typography>
                             <Typography variant="h6">{data.dob}</Typography>
                         </Grid>
-                        <Grid item md={4} xs={6}>
+                        <Grid item md={4} xs={12}>
                             <Typography mb={2} fontWeight={"bold"} variant="h5">Applied Position</Typography>
                             <Typography variant="h6">{data.candidate_position}</Typography>
                         </Grid>
-                        <Grid item md={4} xs={6}>
+                        <Grid item md={4} xs={12}>
                             <Typography mb={2} fontWeight={"bold"} variant="h5">Department</Typography>
                             <Typography variant="h6">{data.department}</Typography>
                         </Grid>
-                        <Grid item md={4} xs={6}>
+                        <Grid item md={4} xs={12}>
                             <Typography mb={2} fontWeight={"bold"} variant="h5">Total Years Of Expeirence</Typography>
-                            <Typography variant="h6">{data.total_years_of_experience}</Typography>
+                            <Typography variant="h6">{data.total_years_of_experience} Years</Typography>
                         </Grid>
-                        <Grid item md={4} xs={6}>
+                        <Grid item md={4} xs={12}>
                             <Typography mb={2} fontWeight={"bold"} variant="h5">Relevant Experience</Typography>
-                            <Typography variant="h6">{data.relevant_experience ? data.relevant_experience : 'none'}</Typography>
+                            <Typography variant="h6">{data.relevant_experience ? data.relevant_experience : '0'} Years</Typography>
                         </Grid>
-                        <Grid item md={4} xs={6}>
+                        <Grid item md={4} xs={12}>
                             <Typography mb={2} fontWeight={"bold"} variant="h5">Qualification</Typography>
                             <Typography variant="h6">{data.qualification}</Typography>
                         </Grid>
-                        <Grid item md={4} xs={6}>
+                        <Grid item md={4} xs={12}>
                             <Typography mb={2} fontWeight={"bold"} variant="h5">Reference From</Typography>
                             <Typography variant="h6">{data.reference_from ? data.reference_from : 'No Reference'}</Typography>
                         </Grid>
-                        <Grid item md={4} xs={6}>
+                        <Grid item md={4} xs={12}>
                             <Typography mb={2} fontWeight={"bold"} variant="h5">Current Location</Typography>
                             <Typography variant="h6">{data.current_location}</Typography>
                         </Grid>
-                        <Grid item md={4} xs={6}>
+                        <Grid item md={4} xs={12}>
                             <Typography mb={2} fontWeight={"bold"} variant="h5">Notice Period</Typography>
-                            <Typography variant="h6">{data.notice_period ? data.notice_period : '0'}</Typography>
+                            <Typography variant="h6">{data.notice_period ? data.notice_period : '0'} Months</Typography>
                         </Grid>
-                        <Grid item md={4} xs={6}>
+                        <Grid item md={4} xs={12}>
                             <Typography mb={2} fontWeight={"bold"} variant="h5">Expectations</Typography>
-                            <Typography variant="h6">{data.expectation}</Typography>
+                            <Typography variant="h6">{data.expectation} LPA</Typography>
                         </Grid>
                     </Grid>
                 

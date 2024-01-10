@@ -34,12 +34,12 @@ import FormSubmitUi from './FormSubmitUi';
       disabled : false,
      
     }
-    const [formData, setFormData] = useState(defaultFormData)
+    const [formData, setFormData] = useState([defaultFormData])
 
     const [validationErr, setValidationErr] = useState(null);
     const [snackbarOpen, setSnackbarOpen] = useState(false);
     const [snackbarMessage, setSnackbarMessage] = useState('');
-    const [selectedDepartment, setSelectedDepartment] = useState(null);
+    const [selectedPosition, setSelectedPosition] = useState(null);
     const setDate = (date) => {
       const formattedDate = moment(date).format('DD MMM,YYYY');
       setFormData({
@@ -99,7 +99,7 @@ import FormSubmitUi from './FormSubmitUi';
                   disabled : true
                 }))
           const rootURL = 'https://payrollv2-local-development.up.railway.app/api/candidate-form'
-          // const rootURL = 'https://jsonplaceholder.typicode.com/todos'
+          // const rootURL = 'http://192.168.29.3:8000/api/candidate-form'
                   axios({
                       url:`${rootURL}`, 
                       method:"post",
@@ -154,8 +154,8 @@ import FormSubmitUi from './FormSubmitUi';
           snackbarOpen={snackbarOpen}
           snackbarMessage={snackbarMessage}
           handleSnackbarClose={handleSnackbarClose}
-          selectedDepartment={selectedDepartment} 
-        setSelectedDepartment={setSelectedDepartment}
+          selectedPosition={selectedPosition} 
+        setSelectedPosition={setSelectedPosition}
         />
       </>
     );
