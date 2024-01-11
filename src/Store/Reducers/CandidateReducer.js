@@ -21,9 +21,7 @@ const initialState = {
 const candidateReducer = (state = initialState, action) => {
     switch(action.type) {
         case candidateActionTypes.SENDING_DETAILS: {
-            //state.disabled = true
-            console.log("data submitted")
-            console.log(state)
+            
             const rootURL = 'https://localhost:8000/api/'
             axios({
                 url:`${rootURL}/candidate-form/`, 
@@ -34,11 +32,11 @@ const candidateReducer = (state = initialState, action) => {
                 data:action.payload
               })
               .then(res => {
-                  console.log(res)
+                  
                   state.disabled = false
               })
               .catch(err => [
-                console.log(err),
+                
                 state.disabled = false
               ])
             return {...state}
